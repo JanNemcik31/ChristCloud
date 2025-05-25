@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="cloud/favicon.jpg" />
+    
   </head>
   <body>
     <main>
@@ -45,32 +47,53 @@
             </div>
             
             <div class="content">
-              <h2>I saw in the night visions, and, behold, one like the Son of man came with the clouds of heaven, and came to the Ancient of days, and they brought him near before him.</h2><br>
+              <h2>I kept looking in the night visions,
+                And behold, on the clouds of heaven
+                One like a Son of Man was coming,
+                And He came up to the Ancient of Days
+                And was presented before Him.</h2><br>
               <h1 style="margin-top: 25px;">Daniel 7:13</h1><br>
             </div>
     
             <div class="content">
-              <h2>And there was given him dominion, and glory, and a kingdom, that all people, nations, and languages, should serve him: his dominion is an everlasting dominion, which shall not pass away, and his kingdom that which shall not be destroyed.</h2><br>
+              <h2>And to Him was given dominion,
+                Glory and a kingdom,
+                That all the peoples, nations, and speakers of every language
+                Should serve and worship Him.
+                His dominion is an everlasting dominion
+                Which will not pass away;
+                And His kingdom is one
+                Which will not be destroyed.</h2><br>
               <h1 style="margin-top: 25px;">Daniel 7:14</h1><br>
             </div>
     
             <div class="content">
-              <h2>Rejoice greatly, O daughter of Zion; shout, O daughter of Jerusalem: behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon a donkey, and upon a colt the foal of a donkey.</h2><br>
+              <h2>Rejoice greatly, O Daughter of Zion!
+                Shout aloud, O Daughter of Jerusalem!
+                Behold, your King is coming to you;
+                He is righteous and endowed with salvation,
+                Humble and unassuming and riding on a donkey,
+                Upon a colt, the foal of a donkey.</h2><br>
               <h1 style="margin-top: 25px;">Zechariah 9:9</h1><br>
             </div>
     
             <div class="content">
-              <h2>The LORD said unto my Lord, Sit thou at my right hand, until I make thine enemies thy footstool.</h2><br>
+              <h2>The Lord says to my Lord,
+                “Sit at My right hand
+                Until I make Your enemies a footstool for Your feet.</h2><br>
               <h1 style="margin-top: 25px;">Psalm 110:1</h1><br>
             </div>
     
             <div class="content">
-              <h2>The LORD shall send the rod of thy strength out of Zion: rule thou in the midst of thine enemies.</h2><br>
+              <h2>The Lord will send the scepter of Your strength from Zion, saying,
+                “Rule in the midst of Your enemies.</h2><br>
               <h1 style="margin-top: 25px;">Psalm 110:2</h1><br>
             </div>
     
             <div class="content">
-              <h2>The LORD hath sworn, and will not repent, Thou art a priest for ever after the order of Melchizedek.</h2><br>
+              <h2>The Lord has sworn and will not change His mind:
+                “You are a priest forever
+                According to the order of Melchizedek.”</h2><br>
               <h1 style="margin-top: 25px;">Psalm 110:4</h1><br>
             </div>
     
@@ -85,12 +108,18 @@
     </main>
 
     <script>
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          document.getElementById('continue-text').classList.add('show');
-        }, 4000);
-      });
-      let currentScreen = 0;
+     window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('continue-text').classList.add('show');
+  }, 4000);
+
+  // Nastav všetky na opacity 0 na začiatku, okrem prvého
+  screens.forEach((screen, i) => {
+    gsap.set(screen, {opacity: i === 0 ? 1 : 0, pointerEvents: i === 0 ? 'auto' : 'none'});
+  });
+});
+
+let currentScreen = 0;
 const screens = document.querySelectorAll(".content");
 let isScrolling = false;
 
@@ -104,6 +133,7 @@ function showScreen(index) {
   });
 }
 
+// Scrollovanie
 window.addEventListener("wheel", (e) => {
   if (isScrolling) return;
   isScrolling = true;
@@ -121,17 +151,19 @@ window.addEventListener("wheel", (e) => {
   }, 800);
 });
 
-// Po načítaní stránky ukáž prvý screen
-window.addEventListener("load", () => {
-  // Nastav všetky na opacity 0 na začiatku, okrem prvého
-  screens.forEach((screen, i) => {
-    gsap.set(screen, {opacity: i === 0 ? 1 : 0, pointerEvents: i === 0 ? 'auto' : 'none'});
-  });
+// Pridanie podpory kliknutia myšou (napr. klik pre krok vpred)
+window.addEventListener("click", () => {
+  if (isScrolling) return;
+  isScrolling = true;
+
+  currentScreen = Math.min(currentScreen + 1, screens.length - 1);
+  showScreen(currentScreen);
 
   setTimeout(() => {
-    document.getElementById('continue-text').classList.add('show');
-  }, 4500);
+    isScrolling = false;
+  }, 800);
 });
+
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
